@@ -1,9 +1,9 @@
-Summary:	Program Showing the Status of LSI 1030 RAID Controller
+Summary:	Program Showing the Status of LSI FusionMPT RAID Controller
 Name:		mpt-status
 Version:	1.2.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
-Group:          System/Kernel and hardware
+Group:          Monitoring
 URL:		http://www.drugphish.ch/~ratz/mpt-status/
 Source0:	http://www.drugphish.ch/~ratz/mpt-status/%{name}-%{version}.tar.gz
 Patch0:		mpt-status.linux-compiler.patch
@@ -12,7 +12,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This program shows the status of the physical and logical drives attached to a
-LSI 1030 RAID (mptlinux, fusion, mpt, ioc) controller.
+LSI FusionMPT RAID (mptlinux, fusion, mpt, ioc) controller.
 
 %prep
 
