@@ -11,7 +11,7 @@ Source2:	mpt-status.crond
 Source3:	mpt-status-cron
 Source4:	README.Mandriva
 Patch0:		mpt-status.linux-compiler.patch
-BuildRequires:	kernel-source
+BuildRequires:	kernel-source-latest
 Requires:	nail
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
