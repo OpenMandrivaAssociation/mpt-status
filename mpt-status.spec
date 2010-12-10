@@ -1,7 +1,7 @@
 Summary:	Program Showing the Status of LSI FusionMPT RAID Controller
 Name:		mpt-status
 Version:	1.2.0
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPLv2+
 Group:          Monitoring
 URL:		http://www.drugphish.ch/~ratz/mpt-status/
