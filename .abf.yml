@@ -1,6 +1,2 @@
 sources:
-  "mpt-status-1.2.0.tar.gz:"	5ec94394634f1642dd758d42ed8e0efd5e35c35c
-  "mpt-status-cron:"	86412514b7d702790317a37fea3bca916a8b25a7
-  "mpt-status-cron.conf:"	4b31aabf916adce7157d27aa4c134948310f2fd8
-  "mpt-status.crond:"	cb3db908bc1bef54205ff68d5df0a69c312390d3
-  "README.Mandriva:"	195fc7e2df4d06c1d7dfab5d56ac728ee98216b3
+  "mpt-status-1.2.0.tar.gz": 5ec94394634f1642dd758d42ed8e0efd5e35c35c

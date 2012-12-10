@@ -1,0 +1,2 @@
+# Check RAID status every 10 minutes if enable
+*/10 * * * *  root grep -q "ENABLE=1" /etc/mpt-status/mpt-status-cron.conf && /usr/share/mpt-status/mpt-status-cron

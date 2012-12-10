@@ -61,3 +61,44 @@ rm -rf %{buildroot}
 %attr(0755,root,root) %{_datadir}/%{name}/mpt-status-cron
 %{_bindir}/*
 %{_mandir}/man?/*
+
+
+%changelog
+* Fri Dec 10 2010 Oden Eriksson <oeriksson@mandriva.com> 1.2.0-5mdv2011.0
++ Revision: 620407
+- the mass rebuild of 2010.0 packages
+
+* Thu Oct 08 2009 Herton Ronaldo Krzesinski <herton@mandriva.com.br> 1.2.0-4mdv2010.0
++ Revision: 456190
+- Force buildrequires of main kernel-source (build fix).
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Tue Sep 02 2008 Oden Eriksson <oeriksson@mandriva.com> 1.2.0-3mdv2009.0
++ Revision: 279148
+- added lots of changes by acecile@mandriva.com
+
+* Mon Sep 01 2008 Oden Eriksson <oeriksson@mandriva.com> 1.2.0-2mdv2009.0
++ Revision: 278392
+- fix group and descriptons
+
+* Mon Sep 01 2008 Oden Eriksson <oeriksson@mandriva.com> 1.2.0-1mdv2009.0
++ Revision: 278361
+- import mpt-status
+
+
+* Mon Sep 01 2008 Oden Eriksson <oeriksson@mandriva.com> 1.2.0-1
+- initial Mandriva package (suse import)
+
+* Sun Aug 05 2007 - olh@suse.de
+- remove inclusion of linux/compiler.h
+* Tue Nov 14 2006 - mjancar@suse.cz
+- update to 1.2.0
+  * works on 64bit architectures (FATE #301702)
+* Fri Apr 07 2006 - mjancar@suse.cz
+- update to 1.1.6
+* Wed Jan 25 2006 - mls@suse.de
+- converted neededforbuild to BuildRequires
+* Mon Aug 01 2005 - anicka@suse.cz
+- package created

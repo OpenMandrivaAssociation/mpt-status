@@ -1,0 +1,34 @@
+mpt-status for Mandriva
+-----------------------
+
+Mandriva provides some integrated tools to periodically check the status of
+all RAID arrays controlled by the RAID controller cards using LSI FusionMPT.
+
+mpt-status needs "mptctl" kernel module to be loaded. To ensure you really
+have a FusionMPT based RAID controller please run the following commands:
+  * modprobe mptctl
+  * mpt-status
+
+If you have some errors, you don't have a LSI FusionMPT controller.
+If your RAID status has been printed, then you need to load "mptctl at boot
+time. To do this, simply run the command below from a root terminal:
+  * echo mptctl >> /etc/modprobe.preload
+
+Then edit the /etc/mpt-status/mpt-status-cron.conf file and replace ENABLE=0
+by ENABLE=1 in it.
+
+Now cron will run a script each 10 minutes. On start the status of the RAID
+is checked. If the RAID array is broken, then a log is written in the syslog
+and a mail is sent to root. As long as the status of the RAID array is 
+bad, a
+log is written every 10 minutes in the syslog and a mail is sent every
+2 hours to root.
+
+As long as the status of the RAID array is bad, this last procedure is
+repeated. A log and a mail are also provided when the status of the 
+array has
+changed. The maximum latency of messages and log on status change is
+10 minutes.
+
+Adam Cécile <acecile@mandriva.com>
+

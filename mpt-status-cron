@@ -1,0 +1,69 @@
+#!/bin/sh
+
+# Author: Adam Cécile <acecile@mandriva.com>
+# License: GNU General Public License v2 or later
+#
+# Based on work by Petter Reinholdtsen <pere@hungry.com>
+# In Debian's package "mpt-status"
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+STATUSFILE=/var/run/mpt-status.status
+MAILTO=root   # Where to report problems (default root)
+REMIND=7200   # Seconds between each reminder (default 2 hours)
+
+. /etc/mpt-status/mpt-status-cron.conf
+
+if (mpt-status $PARAMS ) |grep -q 'state OPTIMAL' ; then
+    BADRAID=false
+else
+    BADRAID=true
+    logger -t mpt-status "Detected non-optimal RAID status"
+fi
+STATUSCHANGE=false
+if [ true = "$BADRAID" ] ; then
+        # RAID not OK
+        (mpt-status $PARAMS) > $STATUSFILE.new
+        if [ ! -f $STATUSFILE ] ; then # RAID just became broken
+                STATUSCHANGE=true
+                mv $STATUSFILE.new $STATUSFILE
+        elif cmp -s $STATUSFILE $STATUSFILE.new ; then
+                # No change.  Should we send reminder?
+                LASTTIME="`stat -c '%Z' $STATUSFILE`"
+                NOW="`date +%s`"
+                SINCELAST="`expr $NOW - $LASTTIME`"
+                if [ $REMIND -le "$SINCELAST" ]; then
+                        # Time to send reminder
+                        STATUSCHANGE=true
+                        mv $STATUSFILE.new $STATUSFILE
+                else
+                        rm $STATUSFILE.new
+                fi
+        else
+                STATUSCHANGE=true
+                mv $STATUSFILE.new $STATUSFILE
+        fi
+else
+        # RAID OK
+        if [ -f $STATUSFILE ] ; then
+                rm $STATUSFILE
+                STATUSCHANGE=true
+        fi
+fi
+
+if [ true = "$STATUSCHANGE" ]; then
+        hostname="`uname -n`"
+        (
+                cat <<EOF
+This is a RAID status update from mpt-status.
+The mpt-status program reports that one of the RAIDs changed state:
+
+EOF
+                if [ -f $STATUSFILE ] ; then
+                        cat $STATUSFILE
+                else
+                        (mpt-status $PARAMS)
+                fi
+                echo
+                echo "Report from mpt-status on $hostname"
+        ) | mail -s "info: mpt raid status change on $hostname" $MAILTO
+fi
