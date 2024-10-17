@@ -4,7 +4,7 @@ Version:	1.2.0
 Release:	7
 License:	GPLv2+
 Group:		Monitoring
-Url:		http://www.drugphish.ch/~ratz/mpt-status/
+Url:		https://www.drugphish.ch/~ratz/mpt-status/
 Source0:	http://www.drugphish.ch/~ratz/mpt-status/%{name}-%{version}.tar.gz
 Source1:	mpt-status-cron.conf
 Source2:	mpt-status.crond
